@@ -82,7 +82,6 @@ public class CustomArrayList<T> implements CustomList<T> {
 				continue;
 			}
 			tempArr[tempArrIteration++] = items[i];
-			System.out.println("Temp: "+tempArrIteration + " Index: " + i);
 		}
 		
 		items = Arrays.copyOf(tempArr, tempArr.length);

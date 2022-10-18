@@ -9,7 +9,7 @@ public interface CustomList<T> {
 
      * return <code>true</code> if it was successfully able to insert an item.
 
-     * @param item the item to be added to the <code>CustomList</code>
+     * @param i the item to be added to the <code>CustomList</code>
 
      * @return <code>true</code> if item was successfully added, <code>false</code> if the item was not successfully added (note: it should always be able to add an item to the list)
 
@@ -88,5 +88,7 @@ public interface CustomList<T> {
      */
 
     T remove(int index) throws IndexOutOfBoundsException;
+
+
 
 }
