@@ -4,28 +4,24 @@ import java.util.Arrays;
 
 public class CustomArrayList<T> implements CustomList<T> {
 	Object[] items = new Object[10];
-	Object[] myArrayList = new Object[items.length];
-	int counter = 0;
+	int currentSize = 0;
+
 	@Override
 	public boolean add(T item) {
+
 		// TODO Auto-generated method stub
-		counter++;
-		if(counter == items.length) {
-			int newSize = (items.length) *2;
+		if (currentSize == items.length) {
+			int newSize = (items.length) * 2;
 			items = Arrays.copyOf(items, newSize);
 		}
-		for (int i = 0; i < items.length; i++) {
-			if (items[i] == null) {
-				items[i] = item;
-				break;
-			}
-			
-		}
-		
-		for(Object x : items) {
-			if(x != null) {
-			myArrayList = Arrays.copyOf(items, counter);
-			
+		items[currentSize] = item;
+		currentSize++;
+
+		for (Object x : items) {
+
+			if (x != null) {
+				items = Arrays.copyOf(items, currentSize);
+
 			}
 		}
 		return true;
@@ -33,33 +29,65 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public int getSize() {
-		return myArrayList.length;
+		return currentSize;
 	}
 
 	@Override
 	public T get(int index) {
-		for (int i = 0; i < myArrayList.length;) {
-			return (T) myArrayList[index];
+		for (int i = 0; i < currentSize;) {
+			return (T) items[index];
 		}
 		return null;
 	}
 
 	@Override
 	public String toString() {
-		return "CustomArrayList [items=" + Arrays.toString(myArrayList) + ", getSize()=" + getSize() + ", getClass()="
+		return "CustomArrayList [items=" + Arrays.toString(items) + ", getSize()=" + getSize() + ", getClass()="
 				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 	@Override
 	public boolean add(int index, T item) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return false;
+		if (items[index] == null && index != 0) {
+			throw new IndexOutOfBoundsException();
+		}
+
+		// First add the item at the end of the array
+		add(item);
+		// Then create a temporary array with the original arrays' length.
+		Object[] tempArr = new Object[items.length];
+
+		for (int i = 0; i < index; i++) {
+
+			tempArr[i] = items[i];
+		}
+		tempArr[index] = item;
+		for (int i = index + 1; i < items.length; i++)
+			tempArr[i] = items[i - 1];
+
+		items = Arrays.copyOf(tempArr, tempArr.length);
+
+		return true;
 	}
 
 	@Override
 	public T remove(int index) throws IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		
+		Object removedItem = null;
+		Object[] tempArr = new Object[items.length-1];
+		int tempArrIteration = 0;
+		for(int i =0;  i < items.length; i++) {
+			if(i == index) {
+				removedItem = items[i];
+				continue;
+			}
+			tempArr[tempArrIteration++] = items[i];
+			System.out.println("Temp: "+tempArrIteration + " Index: " + i);
+		}
+		
+		items = Arrays.copyOf(tempArr, tempArr.length);
+
+		return (T) removedItem;
 	}
 
 }
