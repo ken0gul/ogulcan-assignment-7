@@ -72,20 +72,22 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public T remove(int index) throws IndexOutOfBoundsException {
-		
+
 		Object removedItem = null;
-		Object[] tempArr = new Object[items.length-1];
+		Object[] tempArr = new Object[items.length - 1];
 		int tempArrIteration = 0;
-		for(int i =0;  i < items.length; i++) {
-			if(i == index) {
+		for (int i = 0; i < items.length; i++) {
+
+			if (i == index) {
 				removedItem = items[i];
 				continue;
 			}
+
 			tempArr[tempArrIteration++] = items[i];
 		}
-		
-		items = Arrays.copyOf(tempArr, tempArr.length);
 
+		items = Arrays.copyOf(tempArr, tempArr.length);
+		currentSize--;
 		return (T) removedItem;
 	}
 
