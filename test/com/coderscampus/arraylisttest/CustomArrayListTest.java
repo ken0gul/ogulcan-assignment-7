@@ -69,6 +69,15 @@ public class CustomArrayListTest {
 		assertEquals("Adam", sut.remove(2));
 	}
 	
+	@Test
+	void should_decrement_currentSize_when_removed_item() {
+		sut.add("John");
+		sut.add("Maggie");
+		sut.add("Adam");
+		sut.remove(0);
+		assertEquals(2,  sut.getSize());
+	}
+	
 	
 
 }
