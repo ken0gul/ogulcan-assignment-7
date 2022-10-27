@@ -78,6 +78,15 @@ public class CustomArrayListTest {
 		assertEquals(2,  sut.getSize());
 	}
 	
+	@Test
+	void should_add_multiple_items_at_once () {
+		sut.add(0, "Sam");
+		sut.add(1, "Danny");
+		sut.add(2, "Astrid");
+		
+		assertEquals(3, sut.getSize());
+	}
+	
 	
 
 }
