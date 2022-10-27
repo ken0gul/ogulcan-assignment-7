@@ -48,11 +48,16 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public boolean add(int index, T item) throws IndexOutOfBoundsException {
-		if (items[index] == null && index != 0) {
+		if(index > 0 && items[index-1] == null) 
+			 {
 			throw new IndexOutOfBoundsException();
 		}
-
-		// First add the item at the end of the array
+		//items[index] == null && index != 0 
+			
+		
+			
+				
+ 		// First add the item at the end of the array
 		add(item);
 		// Then create a temporary array with the original arrays' length.
 		Object[] tempArr = new Object[items.length];
@@ -66,6 +71,7 @@ public class CustomArrayList<T> implements CustomList<T> {
 			tempArr[i] = items[i - 1];
 
 		items = Arrays.copyOf(tempArr, tempArr.length);
+			
 
 		return true;
 	}
