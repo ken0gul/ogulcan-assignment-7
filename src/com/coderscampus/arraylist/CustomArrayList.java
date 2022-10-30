@@ -34,10 +34,11 @@ public class CustomArrayList<T> implements CustomList<T> {
 
 	@Override
 	public T get(int index) {
-		for (int i = 0; i < currentSize;) {
+		if(items[index] == null) {
+			throw new IndexOutOfBoundsException();
+			
+			}
 			return (T) items[index];
-		}
-		return null;
 	}
 
 	@Override
