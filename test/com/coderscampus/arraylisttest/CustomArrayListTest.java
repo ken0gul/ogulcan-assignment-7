@@ -88,5 +88,20 @@ public class CustomArrayListTest {
 	}
 	
 	
+	@Test
+	void should_throw_out_of_bounds() {
+		
+		Exception exception = assertThrows(IndexOutOfBoundsException.class	, () -> sut.get(1), "Throw ArrayIndexOutOfBoundsException");
+	}
+ 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
