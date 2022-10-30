@@ -41,7 +41,7 @@ public class CustomArrayListTest {
 	void should_raise_indexoutofbounds_exception() {
 		sut.add("Jonathan");
 		sut.add("Dean");
-		Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> sut.add(2, "Alex"), "Given index is null");
+		Exception exception = assertThrows(IndexOutOfBoundsException.class, () -> sut.add(3, "Alex"), "Given index is null");
 	}
 	
 	@Test
